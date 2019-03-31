@@ -21,5 +21,6 @@ const databaseProxy = new Proxy(databaseCall, {
 });
 
 // usage
-console.log(databaseProxy('dogPic.jpg')); // 'dogPic.jpg - Response from network'
-console.log(databaseProxy('dogPic.jpg')); // 'dogPic.jpg - Response from cache'
+console.log(databaseProxy('image1.jpg')); // Should get fresh data
+console.log(databaseProxy('image1.jpg')); // Should get cached data
+console.log(databaseProxy('image2.jpg')); // Should get fresh data

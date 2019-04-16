@@ -1,4 +1,4 @@
-class Subject {
+export class Subject {
   constructor() {
     this._observers = [];
   }
@@ -16,9 +16,13 @@ class Subject {
       observer.update(change);
     });
   }
+
+  getObservers() {
+    return this._observers;
+  }
 }
 
-class Observer {
+export class Observer {
   constructor(state) {
     this.state = state;
     this.initialState = state;
@@ -38,17 +42,3 @@ class Observer {
     }
   }
 }
-
-// usage
-const sub = new Subject();
-
-const obs1 = new Observer(1);
-const obs2 = new Observer(19);
-
-sub.subscribe(obs1);
-sub.subscribe(obs2);
-
-sub.fire('INC');
-
-console.log(obs1.state); // 2
-console.log(obs2.state); // 20

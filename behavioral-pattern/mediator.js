@@ -1,4 +1,4 @@
-class Airplane {
+export class Airplane {
   constructor(coordinates) {
     this.coordinates = coordinates;
     this.trafficTower = null;
@@ -17,7 +17,7 @@ class Airplane {
   }
 }
 
-class TrafficTower {
+export class TrafficTower {
   constructor() {
     this._airplanes = [];
   }
@@ -28,17 +28,8 @@ class TrafficTower {
   }
 
   requestCoordinates(airplane) {
-    return this._airplanes.filter(plane => airplane !== plane).map(plane => plane.coordinates);
+    return this._airplanes
+      .filter(plane => airplane !== plane)
+      .map(plane => plane.coordinates);
   }
 }
-
-// usage
-const tower = new TrafficTower();
-
-const airplanes = [new Airplane(10), new Airplane(20), new Airplane(30)];
-airplanes.forEach(airplane => {
-  tower.register(airplane);
-});
-
-console.log(airplanes.map(airplane => airplane.requestCoordinates())) 
-// [[20, 30], [10, 30], [10, 20]]

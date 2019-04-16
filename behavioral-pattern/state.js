@@ -1,22 +1,3 @@
-
-class TrafficLight {
-  constructor() {
-    this.states = [new GreenLight(), new RedLight(), new YellowLight()];
-    this.current = this.states[0];
-  }
-
-  change() {
-    const totalStates = this.states.length;
-    let currentIndex = this.states.findIndex(light => light === this.current);
-    if (currentIndex + 1 < totalStates) this.current = this.states[currentIndex + 1];
-    else this.current = this.states[0];
-  }
-
-  sign() {
-    return this.current.sign();
-  }
-}
-
 class Light {
   constructor(light) {
     this.light = light;
@@ -52,20 +33,27 @@ class GreenLight extends Light {
 		return 'GO';
 	}
 }
+export class TrafficLight {
+  constructor() {
+    this.states = [
+      new GreenLight(), 
+      new RedLight(), 
+      new YellowLight(),
+    ];
+    this.current = this.states[0];
+  }
 
-// usage
-const trafficLight = new TrafficLight();
+  change() {
+    const totalStates = this.states.length;
+    let currentIndex = this.states.findIndex(light => light === this.current);
+    if (currentIndex + 1 < totalStates) {
+      this.current = this.states[currentIndex + 1];
+    } else {
+      this.current = this.states[0];
+    }
+  }
 
-console.log(trafficLight.sign()); // 'GO'
-trafficLight.change();
-
-console.log(trafficLight.sign()); // 'STOP'
-trafficLight.change();
-
-console.log(trafficLight.sign()); // 'STEADY'
-trafficLight.change();
-
-console.log(trafficLight.sign()); // 'GO'
-trafficLight.change();
-
-console.log(trafficLight.sign()); // 'STOP'
+  sign() {
+    return this.current.sign();
+  }
+}

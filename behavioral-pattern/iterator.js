@@ -1,36 +1,21 @@
-// using Iterator
-class IteratorClass {
-  constructor(data) {
-    this.index = 0;
-    this.data = data;
-  }
+export default function makeRangeIterator(start = 0, end = Infinity, step = 1) {
+  let nextIndex = start;
+  let iterationCount = 0;
+  const rangeIterator = {
+    next: () => {
+      let result;
+      if (nextIndex <= end) {
+        result = { value: nextIndex, done: false };
+        nextIndex += step;
+        iterationCount++;
+        return result;
+      }
 
-  [Symbol.iterator]() {
-    return {
-      next: () => {
-        if (this.index < this.data.length) {
-          return { value: this.data[this.index++], done: false };
-        } else {
-          this.index = 0; // to reset iteration status
-          return { done: true };
-        }
-      },
-    };
-  }
+      return { 
+        value: iterationCount, 
+        done: true, 
+      };
+    },
+  };
+  return rangeIterator;
 }
-
-// using Generator
-function* iteratorUsingGenerator(collection) {
-  var nextIndex = 0;
-
-  while (nextIndex < collection.length) {
-    yield collection[nextIndex++];
-  }
-}
-
-// usage
-const gen = iteratorUsingGenerator(['Hi', 'Hello', 'Bye']);
-
-console.log(gen.next().value); // 'Hi'
-console.log(gen.next().value); // 'Hello'
-console.log(gen.next().value); // 'Bye'

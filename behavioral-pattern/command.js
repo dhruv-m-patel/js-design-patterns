@@ -1,4 +1,4 @@
-class SpecialMath {
+export class SpecialMath {
   constructor(num) {
     this._num = num;
   }
@@ -16,7 +16,7 @@ class SpecialMath {
   }
 }
 
-class Command {
+export default class Command {
   constructor(subject) {
     this._subject = subject;
     this.commandsExecuted = [];
@@ -27,9 +27,3 @@ class Command {
     return this._subject[command]();
   }
 }
-
-// usage
-const x = new Command(new SpecialMath(5));
-console.log(`square: ${x.execute('square')}`);
-console.log(`cube: ${x.execute('cube')}`);
-console.log(x.commandsExecuted); // ['square', 'cube']

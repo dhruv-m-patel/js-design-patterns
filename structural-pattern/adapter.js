@@ -1,6 +1,6 @@
 
 // old class
-class OldCalculator {
+export class OldCalculator {
   constructor() {
     this.operations = function(value1, value2, op) {
       switch (op) {
@@ -16,7 +16,7 @@ class OldCalculator {
 }
 
 // new class
-class NewCalculator {
+export class NewCalculator {
   constructor() {
     this.add = function(value1, value2) {
       return value1 + value2;
@@ -28,7 +28,7 @@ class NewCalculator {
 }
 
 // Adapter Class: wrapper for NewCalculator class
-class CalculatorAdapter {
+export class CalculatorAdapter {
   constructor() {
     const newCalculator = new NewCalculator();
 
@@ -45,15 +45,3 @@ class CalculatorAdapter {
     };
   }
 }
-
-const calc1 = new OldCalculator();
-console.log(calc1.operations(100, 5, 'add')); // 105
-console.log(calc1.operations(100, 5, 'sub')); // 95
-
-const calc2 = new NewCalculator();
-console.log(calc2.add(100, 5)); // 105
-console.log(calc2.sub(100, 5)); // 95
-
-const adapter = new CalculatorAdapter();
-console.log(adapter.operations(100, 5, 'add')); // 105;
-console.log(adapter.operations(100, 5, 'sub')); // 95;

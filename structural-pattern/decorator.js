@@ -6,7 +6,7 @@ export function readonly(value){
   }
 }
 
-class Cat {
+export class Cat {
   constructor(name) {
     this.name = name;
   }
@@ -16,12 +16,3 @@ class Cat {
     return `${this.name} says Meow!!!`;
   }
 }
-
-const garfield = new Cat();
-console.log(garfield.meow());
-
-garfield.meow = function() {
-  console.log('this should never occurr');
-}
-// below should never execute
-garfield.meow();

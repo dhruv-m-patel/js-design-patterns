@@ -1,4 +1,4 @@
-class Node {
+export class Node {
   constructor(name) {
     this._name = name;
   }
@@ -29,7 +29,7 @@ class Node {
 
 Object.freeze(Node);
 
-class LeafNode extends Node {
+export class LeafNode extends Node {
   constructor(name) {
     super(name);
     this._type = 'Leaf Node';
@@ -44,7 +44,7 @@ class LeafNode extends Node {
   }
 }
 
-class CompositeNode extends Node {
+export class CompositeNode extends Node {
   constructor(name) {
     super(name);
     this._type = 'Composite Node';
@@ -67,17 +67,3 @@ class CompositeNode extends Node {
     return this._children.length;
   }
 }
-
-// usage
-const node = new CompositeNode('root');
-node.addChildNode(new LeafNode('left'));
-const right = new CompositeNode('right');
-node.addChildNode(right);
-right.addChildNode(new LeafNode('right-left'));
-const rightMid = new CompositeNode('right-middle');
-right.addChildNode(rightMid);
-right.addChildNode(new LeafNode('right-right'));
-rightMid.addChildNode(new LeafNode('left-end'));
-rightMid.addChildNode(new LeafNode('right-end'));
-
-console.log(Node.visualizeNodeTree(node));

@@ -19,13 +19,8 @@ class CarRegistry {
     }));
   }
 
-  printRegistry() {
-    console.log('>>>>>>>>>>>>>>> CarRegistry');
-    Object.keys(this.cars).forEach(key => {
-      this.cars[key].forEach(car => {
-        console.log(`${car.carId} - ${key} - ${car.vin}`);
-      });
-    });
+  getLength(year) {
+    return this.cars[year].length;
   }
 }
 
@@ -49,25 +44,19 @@ class MotorcycleRegistry {
     }));
   }
 
-  printRegistry() {
-    console.log('>>>>>>>>>>>>>>> MotorcycleRegistry');
-    Object.keys(this.motorcycles).forEach(key => {
-      Object.values(this.motorcycles[key]).forEach(motorcycle => {
-        console.log(`${motorcycle.motorcycleId} - ${key} - ${motorcycle.vin}`);
-      });
-    });
+  getLength(year) {
+    return this.motorcycles[year].length;
   }
 }
 
-const VEHICLE_TYPES = {
+export const VEHICLE_TYPES = {
   CAR: 'car',
   MOTORCYCLE: 'motorcycle',
 };
 
-
 // Facade implementation
 let vehicleId = 0;
-class VehicleRegistry {
+export class VehicleRegistry {
   _getRegistry(vehicleType) {
     let registry;
     switch(vehicleType) {
@@ -84,21 +73,11 @@ class VehicleRegistry {
       .addVehicle(VehicleRegistry._generateId(), vin, year);
   }
 
-  printRegistry(vehicleType) {
-    this._getRegistry(vehicleType).printRegistry();
+  getLength(vehicleType, year) {
+    return this._getRegistry(vehicleType).getLength(year);
   }
 
   static _generateId() {
     return vehicleId++;
   }
 }
-
-
-const vehicleRegistry = new VehicleRegistry();
-const car1 = vehicleRegistry.registerVehicle(VEHICLE_TYPES.CAR, '12345678901234567', '2013');
-const car2 = vehicleRegistry.registerVehicle(VEHICLE_TYPES.CAR, '23456789012345678', '2013');
-vehicleRegistry.printRegistry(VEHICLE_TYPES.CAR);
-
-const motorcycle1 = vehicleRegistry.registerVehicle(VEHICLE_TYPES.MOTORCYCLE, '12345678901234567', '2013');
-const motorcycle2 = vehicleRegistry.registerVehicle(VEHICLE_TYPES.MOTORCYCLE, '23456789012345678', '2013');
-vehicleRegistry.printRegistry(VEHICLE_TYPES.MOTORCYCLE);

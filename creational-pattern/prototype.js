@@ -1,4 +1,4 @@
-function Vehicle() {
+export function Vehicle() {
   this.vehicleType = null;
   this.numberOfWheels = 0;
 }
@@ -10,15 +10,6 @@ Vehicle.prototype = {
   },
 
   printDetails: function() {
-    console.log(`vehicleType: ${this.vehicleType}`);
-    console.log(`numberOfWheels: ${this.numberOfWheels}`);
+    return `vehicleType: ${this.vehicleType}, numberOfWheels: ${this.numberOfWheels}`;
   }
 };
-
-const car = new Vehicle();
-car.initialize('CAR', 4);
-car.printDetails();
-
-const motorcycle = new Vehicle();
-motorcycle.initialize('MOTORCYCLE', 2);
-motorcycle.printDetails();

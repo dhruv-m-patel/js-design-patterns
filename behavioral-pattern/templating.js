@@ -13,7 +13,7 @@ class Employee {
   }
 }
 
-class Developer extends Employee {
+export class Developer extends Employee {
   constructor(name, salary) {
     super(name, salary);
   }
@@ -24,7 +24,7 @@ class Developer extends Employee {
   }
 }
 
-class Tester extends Employee {
+export class Tester extends Employee {
   constructor(name, salary) {
     super(name, salary);
   }
@@ -34,12 +34,3 @@ class Tester extends Employee {
     return 'testing';
   }
 }
-
-// usage
-const dev = new Developer('Nathan', 100000);
-console.log(dev.getPaid()); // 'Nathan got paid 100000'
-console.log(dev.work()); // 'Nathan handles application development'
-
-const tester = new Tester('Brian', 90000);
-console.log(tester.getPaid()); // 'Brian got paid 90000'
-console.log(tester.work()); // 'Brian handles testing'

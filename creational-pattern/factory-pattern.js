@@ -1,4 +1,4 @@
-const SHAPES = {
+export const SHAPES = {
   SQUARE: 'square',
   TRIANGLE: 'triangle',
 };
@@ -23,7 +23,7 @@ class Triangle {
   }
 }
 
-class ShapeFactory {
+export class ShapeFactory {
   constructor() {
     this.createShape = function(shapeType) {
       let shape;
@@ -36,11 +36,3 @@ class ShapeFactory {
     }
   }
 }
-
-const factory = new ShapeFactory();
-
-const square = factory.createShape(SHAPES.SQUARE);
-console.log(square.toString());
-
-const triangle = factory.createShape(SHAPES.TRIANGLE);
-console.log(triangle.toString());

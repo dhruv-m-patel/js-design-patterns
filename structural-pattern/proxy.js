@@ -7,7 +7,7 @@ function databaseCall(url) {
 }
 
 // Proxy Call
-const databaseProxy = new Proxy(databaseCall, {
+export const databaseProxy = new Proxy(databaseCall, {
   apply(target, thisArg, args) {
     const urlParam = args[0];
     if (redisCache[urlParam]) {
@@ -19,8 +19,3 @@ const databaseProxy = new Proxy(databaseCall, {
     }
   },
 });
-
-// usage
-console.log(databaseProxy('image1.jpg')); // Should get fresh data
-console.log(databaseProxy('image1.jpg')); // Should get cached data
-console.log(databaseProxy('image2.jpg')); // Should get fresh data
